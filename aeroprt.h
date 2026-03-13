@@ -8,27 +8,32 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-
+#include <memory>
+#include <map>
+struct Aeroprt;
+struct Conexion;
 struct Aeroprt {
     std::string nom;
     std::string id;
-    int latitude;
-    int longitude;
-    std::vector<*Conexion> entre;
-    std::vector<*Conexion> sortie;
-    Aeroprt(fstream &stream, std::string delimiter);
-    void write (fstream &stream, std::string delimiter);
-    void ajouter_connection_entre(*conection);
-    void ajouter_connection_sortie(*conection);
+    double latitude;
+    double longitude;
+    static std::vector<std::shared_ptr<Aeroprt>> aeroport;
+    std::vector<std::shared_ptr<Conexion>> entre;
+    std::vector<std::shared_ptr<Conexion>> sortie;
+    Aeroprt(std::fstream stream, std::string delimiter);
+    void write (std::fstream stream, std::string delimiter);
+    void ajouter_connection_entre(std::shared_ptr<Conexion> conection);
+    void ajouter_connection_sortie(std::shared_ptr<Conexion> conection);
     int size_e =0;
     int size_s =0;
+    int size_a =0;
 };
 struct Conexion {
-    Aeroprt* entree;
-    Aeroprt* sortie;
+    std::shared_ptr<Aeroprt> entree;
+    std::shared_ptr<Aeroprt> sortie;
     float duree;
-    Conexion (fstream &stream, std::string delimiter, std::map<std::string ,*Aeroprt> aeroprt);
-    void write (fstream &stream, std::string delimiter);
+    Conexion (std::fstream stream, std::string delimiter, std::map<std::string ,std::shared_ptr<Aeroprt>> aeroprt);
+    void write (std::fstream stream, std::string delimiter);
 };
 
 
