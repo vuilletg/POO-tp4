@@ -8,7 +8,7 @@ Aeroport::Aeroport() : id(""), nom(""), latitude(0), longitude(0) {}
 
 Aeroport::Aeroport(std::string i, std::string n, double lat, double lon)
         : id(i), nom(n), latitude(lat), longitude(lon) {}
-
+std::string Aeroport::getId() const { return id; }
 
 std::istream& operator>>(std::istream& is, Aeroport& a) {
     is >> a.id >> a.nom >> a.latitude >> a.longitude;
@@ -24,6 +24,12 @@ Connexion::Connexion() : idDepart(""), idArrivee(""), duree(0) {}
 
 Connexion::Connexion(std::string dep, std::string arr, double d)
         : idDepart(dep), idArrivee(arr), duree(d) {}
+
+std::string Connexion::getDepart() const { return idDepart; }
+
+std::string Connexion::getArrivee() const { return idArrivee; }
+
+double Connexion::getDuree() const { return duree; }
 
 std::istream& operator>>(std::istream& is, Connexion& c) {
     is >> c.idDepart >> c.idArrivee >> c.duree;

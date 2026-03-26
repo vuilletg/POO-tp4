@@ -20,7 +20,7 @@ public:
     Aeroport();
     Aeroport(std::string i, std::string n, double lat, double lon);
 
-    std::string getId() const { return id; }
+    std::string getId() const;
 
     friend std::istream& operator>>(std::istream& is, Aeroport& a);
     friend std::ostream& operator<<(std::ostream& os, const Aeroport& a);
@@ -37,8 +37,9 @@ public:
     Connexion();
     Connexion(std::string dep, std::string arr, double d);
 
-    std::string getDepart() const { return idDepart; }
-    std::string getArrivee() const { return idArrivee; }
+    std::string getDepart() const;
+    std::string getArrivee() const;
+    double getDuree() const;
 
     friend std::istream& operator>>(std::istream& is, Connexion& c);
     friend std::ostream& operator<<(std::ostream& os,const Connexion& c);

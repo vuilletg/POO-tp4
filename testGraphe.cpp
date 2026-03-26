@@ -20,5 +20,6 @@ int main() {
     monReseau.ajouterArete(Connexion("LYS", "MRS", 0.5));
     monReseau.ajouterArete(Connexion("MRS", "TLS", 1.2));
 
+    monReseau.dijkstra("lys", "tls", [](const Connexion& c) { return c.getDuree(); });
     return 0;
 }
